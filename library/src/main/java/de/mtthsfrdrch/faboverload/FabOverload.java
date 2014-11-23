@@ -121,11 +121,15 @@ public class FabOverload extends PopupWindow {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playSequentially(animators);
-//        animatorSet.addListener(animatorListener);
+        if (animatorListener != null) animatorSet.addListener(animatorListener);
         animatorSet.start();
     }
 
     public boolean isFabVisible() {
         return isVisible(fab);
+    }
+
+    public boolean isOverloadVisible() {
+        return getWidth() == ViewGroup.LayoutParams.MATCH_PARENT;
     }
 }

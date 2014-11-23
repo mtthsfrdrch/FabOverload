@@ -1,5 +1,7 @@
 package de.mtthsfrdrch.faboverload;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.Gravity;
@@ -20,7 +22,7 @@ public class FabOverloadController {
     }
 
     public void switchOverload() {
-        if (fabOverload.getWidth() == ViewGroup.LayoutParams.MATCH_PARENT) {
+        if (fabOverload.isOverloadVisible()) {
             fabOverload.hideSubFabs(null);
         } else {
             fabOverload.showSubFabs();
@@ -45,8 +47,20 @@ public class FabOverloadController {
     }
 
     public void hideFAB() {
-        if (fabOverload.isShowing()) {
-            fabOverload.hideFab(null);
+        if (fabOverload.isOverloadVisible()) {
+            fabOverload.hideSubFabs(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (fabOverload.isShowing()) {
+                        fabOverload.hideFab(null);
+                    }
+                }
+            });
+        } else {
+            if (fabOverload.isShowing()) {
+                fabOverload.hideFab(null);
+
+            }
         }
     }
 
