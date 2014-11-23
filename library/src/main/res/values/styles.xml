@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Material">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Widget" />
+
+    <style name="Widget.FAB">
+        <item name="android:background">@drawable/btn_fab_background</item>
+        <item name="android:layout_height">@dimen/fab_size</item>
+        <item name="android:layout_width">@dimen/fab_size</item>
+    </style>
+
+    <style name="Widget.FAB.sub">
+        <item name="android:background">@drawable/btn_fab_background</item>
+        <item name="android:layout_height">@dimen/fab_sub_size</item>
+        <item name="android:layout_width">@dimen/fab_sub_size</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+
+</resources>

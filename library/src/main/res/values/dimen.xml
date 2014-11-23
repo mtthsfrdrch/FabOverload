@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="wrap_content">-2px</dimen>
+    <dimen name="match_parent">-1px</dimen>
+    <dimen name="padding_xsmall">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xlarge">32dp</dimen>
+    <dimen name="margin_xsmall">@dimen/padding_xsmall</dimen>
+    <dimen name="margin_small">@dimen/padding_small</dimen>
+    <dimen name="margin_medium">@dimen/padding_medium</dimen>
+    <dimen name="margin_large">@dimen/padding_large</dimen>
+    <dimen name="margin_xlarge">@dimen/padding_xlarge</dimen>
+
+    <dimen name="fab_size">56dp</dimen>
+    <dimen name="fab_sub_size">48dp</dimen>
+</resources>
