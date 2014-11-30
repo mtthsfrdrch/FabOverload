@@ -17,8 +17,8 @@
         <item name="android:background">@drawable/btn_fab_background</item>
         <item name="android:layout_height">@dimen/fab_sub_size</item>
         <item name="android:layout_width">@dimen/fab_sub_size</item>
-        <item name="android:layout_marginBottom">@dimen/margin_small</item>
-        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginBottom">@dimen/margin_medium</item>
+        <item name="android:layout_marginRight">@dimen/margin_medium</item>
     </style>
 
 

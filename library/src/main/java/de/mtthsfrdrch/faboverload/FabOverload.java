@@ -4,47 +4,53 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
 import static de.mtthsfrdrch.faboverload.Utils.isVisible;
 
 public class FabOverload extends PopupWindow {
 
     private View root;
 
-    private Fab fab;
+    private ImageButton fab;
+    private LinearLayout subFabContainer;
     private List<Fab> subFabs = new ArrayList<>();
+    private View.OnClickListener fabClickListener;
 
     public FabOverload(Context context) {
-        super(LayoutInflater.from(context).inflate(R.layout.popup_fab, null),
+        super(LayoutInflater.from(context).inflate(R.layout.faboverload, null),
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 //        setOutsideTouchable(false);
         setAnimationStyle(0);
 
         root = getContentView();
+        subFabContainer = (LinearLayout) root.findViewById(R.id.sub_fab_container);
+        fab = (ImageButton) root.findViewById(R.id.btn_fab);
 
-        fab = (Fab) root.findViewById(R.id.btn_fab);
-        Fab subFab = (Fab) root.findViewById(R.id.btn_fab_sub_1);
-        subFabs.add(subFab);
-        subFab = (Fab) root.findViewById(R.id.btn_fab_sub_2);
-        subFabs.add(subFab);
+//        Fab subFab = (Fab) root.findViewById(R.id.btn_fab_sub_1);
+//        subFabs.add(subFab);
+//        subFab = (Fab) root.findViewById(R.id.btn_fab_sub_2);
+//        subFabs.add(subFab);
+//        subFab = (Fab) root.findViewById(R.id.btn_fab_sub_3);
+//        subFabs.add(subFab);
     }
 
     public void setFabClickListener(View.OnClickListener clickListener) {
+        fabClickListener = clickListener;
         fab.setOnClickListener(clickListener);
         for (Fab subFab : subFabs) {
-            subFab.setOnClickListener(clickListener);
+            subFab.setButtonClickListener(clickListener);
         }
     }
 
@@ -75,7 +81,7 @@ public class FabOverload extends PopupWindow {
             int finalRadius = Math.max(view.getWidth(), view.getHeight());
 
             // create the animator for this view (the start radius is zero)
-            Animator animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0,
+            Animator animator = ViewAnimationUtils.createCircularReveal(view, cx, cy, finalRadius / 2,
                     finalRadius);
             animator.setStartDelay(0);
             animator.setDuration(100);
@@ -131,5 +137,21 @@ public class FabOverload extends PopupWindow {
 
     public boolean isOverloadVisible() {
         return getWidth() == ViewGroup.LayoutParams.MATCH_PARENT;
+    }
+
+    public void inflateSubFabs(int mergeLayout) {
+        subFabContainer.removeAllViews();
+        LinearLayout.inflate(getContentView().getContext(), mergeLayout, subFabContainer);
+        int subFabCount = subFabContainer.getChildCount();
+        subFabs = new ArrayList<>(subFabCount);
+        for (int i = 0; i < subFabCount; i++) {
+            subFabs.add((Fab) subFabContainer.getChildAt(i));
+        }
+        setFabClickListener(fabClickListener);
+        getContentView().invalidate();
+    }
+
+    public void addFab(Fab fab) {
+        subFabContainer.addView(fab);
     }
 }
