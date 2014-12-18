@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fov="http://schemas.android.com/apk/res-auto">
+
+    <de.mtthsfrdrch.faboverload.Fab
+        tools:visibility="visible"
+        android:id="@+id/btn_fab_sub_1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        fov:buttonId="@+id/btn_fab_sub_1"
+        fov:buttonImage="@drawable/ic_check"
+        fov:titleText="Check"/>
+
+    <de.mtthsfrdrch.faboverload.Fab
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        fov:buttonImage="@drawable/ic_delete"
+        fov:buttonId="@+id/btn_fab_sub_2"
+        fov:titleText="Delete"/>
+
+    <de.mtthsfrdrch.faboverload.Fab
+        tools:visibility="visible"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        fov:buttonImage="@drawable/ic_delete"
+        fov:buttonId="@+id/btn_fab_sub_3" />
+
+</merge>
